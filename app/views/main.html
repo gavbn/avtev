@@ -47,9 +47,9 @@
                 <li class="list-group-item" ng-repeat="file in torrent.files">
                     <input type="checkbox" ng-model="file.selected" ng-click="select(torrent, file)" />
                     <span class="fa fa-cloud-download"></span>
-                    <a ng-href="{{ file.link }}" target="_blank">
-            {{ file.name }} ({{ file.length / 1024 / 1024 | number:1 }} MB)
-          </a>
+                    <a ng-href="{{ file.link }}" target="_blank">{{ file.name }} ({{ file.length / 1024 / 1024 | number:1 }} MB)</a>
+                </li>
+                <li>
                     <video id="my-video" class="video-js" controls preload="auto" width="640" height="264" poster="MY_VIDEO_POSTER.jpg" data-setup="{}">
                         <source src="{{ file.link }}" type='video/mp4'>
                         <p class="vjs-no-js">
@@ -91,5 +91,5 @@
     </div>
 </div>
 <div class="footer">
-    <p><span class="fa fa-heart"></span> peerflix</p>
+    <p><span class="fa fa-heart"></span> Streamify</p>
 </div>
