@@ -1,33 +1,29 @@
 <div class="header">
     <ul class="nav nav-pills pull-right">
         <li class="active"><a href="">Torrents</a></li>
-        <li>
-            <a href="https://github.com/asapach/peerflix-server" target="_blank">
-                <i class="fa fa-github"></i> About</a>
-        </li>
     </ul>
-    <h3 class="text-muted text-nowrap"><img src="images/logo.svg" alt="logo" height="40"> peerflix server</h3>
+    <h3 class="text-muted text-nowrap"><img src="images/logo.svg" alt="logo" height="40">Streamify</h3>
 </div>
 <div class="jumbotron" ng-file-drop ng-file-change="upload($files)">
     <h1>Stream Torrents</h1>
     <div class="form-group">
         <div class="input-group">
             <span class="input-group-addon">torrent:</span>
-            <input type="text" class="form-control" placeholder="Torrent or magnet link" ng-model="link" ng-keypress="keypress($event)">
+            <input type="text" class="form-control" placeholder="Torrent ou lien magnet" ng-model="link" ng-keypress="keypress($event)">
         </div>
     </div>
     <a class="btn btn-success" href="" ng-click="download()">
-        <span class="fa fa-cloud-download"></span> Download
+        <span class="fa fa-cloud-download"></span> Télécharger
     </a>
     <p class="text-right">
-        <i class="fa fa-upload"></i> Drop .torrent files here or
+        <i class="fa fa-upload"></i> Glisser fichiers .torrent ou
         <span class="btn-link" ng-file-select ng-file-change="upload($files)">
-      browse to upload
+      parcourir et uploader
     </span>
     </p>
 </div>
 <div ng-if="!torrents.length" class="alert alert-info" role="alert">
-    <i class="fa fa-film"></i> Go get some torrents to watch!
+    <i class="fa fa-film"></i> Va chercher des torrents à regarder !
 </div>
 <div class="row content">
     <div ng-repeat="torrent in torrents" class="panel panel-default" ng-class="{ 'panel-warning': !torrent.ready, 'panel-success': torrent.interested }">
@@ -37,7 +33,7 @@
         'fa-cloud-upload': torrent.ready && !torrent.interested,
         'fa-refresh fa-spin': !torrent.ready,
         'fa-exchange': torrent.interested }">
-      </span> {{ torrent.name || 'Fetching metadata...' }}
+      </span> {{ torrent.name || 'Récupération des infos...' }}
         </div>
         <div class="panel-body">
             <div class="progress progress-striped" ng-class="{ active: torrent.interested }">
@@ -48,9 +44,6 @@
                     <input type="checkbox" ng-model="file.selected" ng-click="select(torrent, file)" />
                     <span class="fa fa-cloud-download"></span>
                     <a ng-href="{{ file.link }}" target="_blank">{{ file.name }} ({{ file.length / 1024 / 1024 | number:1 }} MB)</a></br>
-                    <video controls width="640" height="264">
-                        <source src="{{ file.link }}" type='video/mp4'>
-                    </video>
                 </li>
             </ul>
         </div>
@@ -62,7 +55,7 @@
                     </button>
                 </li>
                 <li class="text-nowrap" ng-show="torrent.stats">
-                    <strong>Speed:</strong>
+                    <strong>Vitesse:</strong>
                     <span class="label label-success">{{ torrent.stats.speed.down / 1024 | number:1 }}</span> /
                     <span class="label label-danger">{{ torrent.stats.speed.up / 1024 | number:1 }}</span> KB/s
                 </li>
@@ -72,12 +65,12 @@
                     <span class="label label-danger">{{ torrent.stats.traffic.up / 1024 / 1024 | number:1 }}</span> MB
                 </li>
                 <li class="text-nowrap" ng-show="torrent.stats">
-                    <strong>Peers:</strong>
+                    <strong>Pairs:</strong>
                     <span class="label label-success">{{ torrent.stats.peers.unchocked | number }}</span> /
                     <span class="label label-default">{{ torrent.stats.peers.total | number }}</span>
                 </li>
                 <li class="text-nowrap" ng-show="torrent.stats">
-                    <strong>Queue:</strong>
+                    <strong>Position:</strong>
                     <span class="label label-primary">{{ torrent.stats.queue | number }}</span>
                 </li>
             </ul>
@@ -85,5 +78,5 @@
     </div>
 </div>
 <div class="footer">
-    <p><span class="fa fa-heart"></span> peerflix</p>
+    <p><span class="fa fa-heart"></span> Streamify by Citriik</p>
 </div>
